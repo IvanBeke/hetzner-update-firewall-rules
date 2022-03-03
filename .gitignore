@@ -1,2 +1,5 @@
-hostnames.json
+allowed.json
+rules.json
 .env
+logfile.log
+__pycache__
