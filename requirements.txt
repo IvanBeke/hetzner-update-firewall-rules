@@ -1,0 +1,3 @@
+hcloud==1.16.*
+python_dotenv==0.19.*
+requests==2.27.*
