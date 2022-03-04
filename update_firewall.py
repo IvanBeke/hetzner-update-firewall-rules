@@ -1,11 +1,11 @@
 import json, os
 import logging
-import sys
+import socket
+from typing import List
 from hcloud import Client
 from hcloud.firewalls.client import FirewallRule
 from dotenv import load_dotenv
 
-from get_ip import get_ip
 
 logging.basicConfig(
     filename='logfile.log',
@@ -16,7 +16,13 @@ logging.basicConfig(
 logger = logging.getLogger()
 
 
-def create_rule(ips, port, description):
+
+def get_ip(hostname: str) -> str:
+    ip = socket.gethostbyname(hostname)
+    return ip
+
+
+def create_rule(ips: List[str], port: str, description: str) -> FirewallRule:
     return FirewallRule(
         FirewallRule.DIRECTION_IN,
         FirewallRule.PROTOCOL_TCP,
