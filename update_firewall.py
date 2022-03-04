@@ -42,12 +42,12 @@ if __name__ == '__main__':
 
     client = Client(os.environ.get('HETZNER_TOKEN'))
     firewall = client.firewalls.get_by_name(os.environ.get('HETZNER_FIREWALL_NAME'))
-    whitelist_ips = list(map(lambda ip: f'{ip}/32', [get_ip(hostname) for hostname in allowed['hostnames']])) + allowed['ips']
+    whitelist_ips = list(map(lambda ip: f'{ip}/32', [get_ip(hostname) for hostname in allowed['hostnames']] + allowed['ips']))
     firewall_rules = list(map(lambda rule: create_rule(whitelist_ips, **rule), rules))
 
     try:
         firewall.set_rules(firewall_rules)
-        logger.info('Todo bien')
+        logger.info('All good')
     except BaseException as e:
-        logger.error(f'Todo mal {e}')
+        logger.error(f'All bad\n {e}')
 
