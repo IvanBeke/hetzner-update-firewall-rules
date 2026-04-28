@@ -1,2 +1,2 @@
 hcloud==1.16.*
-python_dotenv==0.19.*
+python-dotenv==1.2.2
